@@ -36,7 +36,7 @@ def sheets_batch_update(spreadsheet_id, title, find, replacement):
     # pylint: disable=maybe-no-member
 
     try:
-        service = build('classroom', 'v1', credentials=creds)
+        service = build('sheets', 'v4', credentials=creds)
 
         requests = []
         # Change the spreadsheet's title.
@@ -75,6 +75,7 @@ def sheets_batch_update(spreadsheet_id, title, find, replacement):
 
 
 if __name__ == '__main__':
-    sheets_batch_update('spreadsheet_id', 'title', 'find', 'replacement')
+    sheets_batch_update('1rVNXl3TOBTpkKi9cd0a6QeniO0fbc2ANmD13A8ux168', 'title', 'Hello',
+                        'replacement')
 
 # [END sheets_batch_update]

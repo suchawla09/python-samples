@@ -13,17 +13,23 @@ limitations under the License.
 
 import unittest
 
-import sheets_create
+import sheets_get_values
 from base_test import BaseTest
 
 
-class Testsheetscreate(BaseTest):
-    """Unit test class for Create Sheet snippet"""
-    def test_classroom_create_course(self):
-        """sheet function for Create sheet """
-        spreadsheet_id = sheets_create.create('Title')
-        self.assertIsNotNone(spreadsheet_id)
-        self.delete_file_on_cleanup(spreadsheet_id)
+class Testgetvalues(BaseTest):
+    """Unit test class for get value Sheet snippet"""
+
+    def test_get_values(self):
+        """test_get_values"""
+        spreadsheet_id = self.create_test_spreadsheet()
+        self.populate_values(spreadsheet_id)
+        result = sheets_get_values.get_values(spreadsheet_id, 'A1:C2')
+        self.assertIsNotNone(result)
+        values = result.get('values')
+        self.assertIsNotNone(values)
+        self.assertEqual(2, len(values))
+        self.assertEqual(3, len(values[0]))
 
 
 if __name__ == "__main__":
